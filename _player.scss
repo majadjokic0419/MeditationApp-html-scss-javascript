@@ -1,0 +1,107 @@
+@mixin glass-effect {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2), inset 0px 1px 2px rgba(255, 255, 255, 0.8), inset 0px 20px 40px rgba(255, 255, 255, 0.25), inset 0px -4px 4px rgba(255, 255, 255, 0.25), inset 0px 4px 12px rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(40px);
+}
+
+.music-container {
+    width: 320px;
+    height: 70px;
+    border-radius: 20px;
+    display: flex;
+    padding: 20px 15px;
+    position: relative;
+    align-items: center;
+    z-index: 10;
+    background-color: rgba(63, 51, 38, 0.637);
+    @include glass-effect();
+    margin: 0;
+}
+
+.img-container {
+    position: relative;
+    border-radius: 50%;
+    width: 90px;
+    background-color: rgba(63, 51, 38, 0.637);
+}
+
+.img-container img {
+    border-radius: 50%;
+    z-index: 1;
+    height: 90px;
+    width: inherit;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    padding-left: 60px;
+}
+
+.action-btn {
+    border: 0;
+    color: #f9f2f9c9;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 20px;
+}
+
+.action-btn.action-btn-big {
+    color: #ffffff;
+    font-size: 30px;
+}
+
+.action-btn:focus {
+    outline: 0;
+}
+
+.music-info {
+    background-color: rgba(255, 255, 255, 0.349);
+    border-radius: 15px 15px 0 0;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    height: calc(70%);
+    width: calc(100% - 40px);
+    padding: 5px 10px 10px 100px;
+    opacity: 0;
+    transform: translateY(0%);
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    z-index: 0;
+}
+
+.title-and-durration {
+    display: flex;
+    justify-content: space-between;
+}
+
+.music-container.play .music-info {
+    opacity: 1;
+    transform: translateY(-100%);
+}
+
+.music-info h4 {
+    margin: 0;
+}
+
+.progress-container {
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    height: 4px;
+    width: 100%;
+}
+
+.progress {
+    background-color: #fe8daa;
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+}

@@ -1,0 +1,278 @@
+    @import 'navbar';
+    @import 'player';
+    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+    @mixin glass-effect {
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2), inset 0px 1px 2px rgba(255, 255, 255, 0.8), inset 0px 20px 40px rgba(255, 255, 255, 0.25), inset 0px -4px 4px rgba(255, 255, 255, 0.25), inset 0px 4px 12px rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(40px);
+    }
+    
+    @mixin breathe-font {
+        font-family: 'Quicksand';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 30px;
+        letter-spacing: 0.05em;
+        text-transform: lowercase;
+        color: #FFFFFF;
+    }
+    
+    a,
+    a:hover,
+    a:focus,
+    a:active {
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    * {
+        &,
+        &:before,
+        &:after {
+            box-sizing: border-box;
+        }
+    }
+    
+    body {
+        box-sizing: border-box;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    html {
+        font-family: "Quicksand", sans-serif;
+        font-size: 16px;
+        height: 100%;
+    }
+    
+    body {
+        min-height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    button {
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
+    
+    .wrapper {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: 11% 9% 59% 31%;
+    }
+    
+    .bar {
+        grid-row: 1/1;
+    }
+    
+    .breathe-circle-row {
+        width: 100%;
+        grid-row: 3/4;
+    }
+    
+    .breathe-circle {
+        display: flex;
+        height: 400px;
+        width: 400px;
+        margin: auto;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .player {
+        grid-row: 4/4;
+        justify-self: center;
+        margin: 0;
+    }
+    
+    .gradient-circle {
+        position: absolute;
+        z-index: -2;
+    }
+    
+    #circle {
+        background-color: rgba(63, 51, 38, 0.637);
+        position: absolute;
+        width: 229.25px;
+        height: 229.25px;
+        z-index: -9;
+        @include glass-effect();
+        border-radius: 50%;
+    }
+    
+    #circle-border {
+        position: absolute;
+    }
+    
+    .animate-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 400px;
+        width: 400px;
+        margin: auto;
+        position: absolute;
+        z-index: 10;
+    }
+    
+    .pointer-container {
+        position: absolute;
+        top: 2px;
+        width: 20px;
+        height: 200px;
+        // transform-origin: bottom center;
+        // animation: rotate 12s linear forwards infinite;
+    }
+    
+    .pointer {
+        background-color: rgba(247, 251, 251, 0.856);
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+        display: block;
+    }
+    
+    .animate {
+        --scaleTo: 1.2;
+        --scaleFrom: 1;
+        animation: growing 4s linear forwards, holding 2s linear 4s forwards, shrinking 6s linear 6s forwards;
+    }
+    
+    video {
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -10;
+    }
+    
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes holding {
+        from {
+            transform: scale3d(var(--scaleTo), var(--scaleTo), var(--scaleTo));
+        }
+        to {
+            transform: scale3d(var(--scaleTo), var(--scaleTo), var(--scaleTo));
+        }
+    }
+    
+    @keyframes growing {
+        from {
+            transform: scale3d(var(--scaleFrom), var(--scaleFrom), var(--scaleFrom));
+        }
+        to {
+            transform: scale3d(var(--scaleTo), var(--scaleTo), var(--scaleTo));
+        }
+    }
+    
+    @keyframes shrinking {
+        from {
+            transform: scale3d(var(--scaleTo), var(--scaleTo), var(--scaleTo));
+        }
+        to {
+            transform: scale3d(var(--scaleFrom), var(--scaleFrom), var(--scaleFrom));
+        }
+    }
+    
+    #access-grow,
+    #access-shrink,
+    #access-hold {
+        display: none;
+    }
+    
+    @keyframes changeText {
+        0% {
+            opacity: 0;
+        }
+        25% {
+            opacity: 0.7;
+        }
+        50% {
+            opacity: 1;
+        }
+        75% {
+            opacity: 0.7;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
+    @keyframes waitText {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
+    .breatheIN-text-animation {
+        animation: changeText 4s linear forwards, waitText 8s linear 4s forwards;
+        animation-play-state: paused;
+    }
+    
+    .hold-text-animation {
+        animation: waitText 4s linear forwards, changeText 2s linear 4s forwards, waitText 6s linear 6s forwards;
+        animation-play-state: paused;
+    }
+    
+    .breatheOUT-text-animation {
+        animation: waitText 6s linear forwards, changeText 6s linear 6s forwards;
+        animation-play-state: paused;
+    }
+    
+    #breatheIN {
+        position: absolute;
+        z-index: -6;
+        @include breathe-font();
+    }
+    
+    #hold {
+        position: absolute;
+        z-index: -4;
+        @include breathe-font();
+    }
+    
+    #breatheOUT {
+        position: absolute;
+        z-index: -2;
+        @include breathe-font();
+    }
+    
+    #starter-text {
+        position: absolute;
+        z-index: -6;
+        @include breathe-font();
+    }
+    
+    // #first-gradient {
+    //     position: absolute;
+    //     z-index: -6;
+    // }
+    // #second-gradient {
+    //     position: absolute;
+    //     z-index: -4;
+    // }
+    // #third-gradient {
+    //     position: absolute;
+    //     z-index: -2;
+    // }

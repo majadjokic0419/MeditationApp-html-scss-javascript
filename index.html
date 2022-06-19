@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Relaxer</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="vid-container">
+            <video loop playsinline id="video">
+          <source src="./video/rain.mp4" type="video/mp4" />
+        </video>
+        </div>
+        <div class="blurry"></div>
+        <div class="bar">
+            <div class="nav-display">
+                <p class="title">Breathe</p>
+
+                <div class="button-time">
+                    <a href="#" class="time-toggle-button">
+                        <img class="img-toggle" src="svg/clock-down-arrow.svg" alt="My Happy SVG" />
+                        <p class="text-toggle">Time</p>
+                    </a>
+                    <div class="time-navbar-links">
+                        <svg class="gray-line" width="2" height="253" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  stroke="#9BA19B"
+                  stroke-width="2"
+                  d="M1 0v351"
+                  stroke-opacity="70%"
+                />
+              </svg>
+                        <ul>
+                            <li class="dropdown-item-1">
+                                <button class="ten-min-bttn">
+                    <p>10<br />MIN</p>
+                  </button>
+                            </li>
+                            <li class="dropdown-item-2">
+                                <button class="five-min-bttn">
+                    <p>5<br />MIN</p>
+                  </button>
+                            </li>
+                            <li class="dropdown-item-3">
+                                <button class="two-min-bttn">
+                    <p>2<br />MIN</p>
+                  </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="button-ambient">
+                    <a href="#" class="ambient-toggle-button">
+                        <img class="img-toggle" src="svg/ambient-down-arrow.svg" alt="My Happy SVG" />
+                        <p class="text-toggle">Ambient</p>
+                    </a>
+                    <div class="ambient-navbar-links">
+                        <svg class="gray-line" width="2" height="253" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  stroke="#9BA19B"
+                  stroke-width="2"
+                  d="M1 0v351"
+                  stroke-opacity="70%"
+                />
+              </svg>
+                        <ul>
+                            <li class="dropdown-item-1" id="rain-bttn">
+                                <button class="rain-ambient-bttn">
+                    <img src="svg/rain.svg" alt="" />
+                  </button>
+                            </li>
+                            <li class="dropdown-item-2" id="beach-bttn">
+                                <button class="beach-ambient-bttn">
+                    <img src="svg/sun.svg" alt="" />
+                  </button>
+                            </li>
+                            <li class="dropdown-item-3" id="bonfire-bttn">
+                                <button class="bonfire-ambient-bttn">
+                    <img src="svg/bonfire.svg" alt="" />
+                  </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <svg class="bar__background">
+          <defs>
+            <linearGradient
+              id="gradient"
+              x1="-326.667"
+              y1="38"
+              x2="1964.67"
+              y2="38"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#789060" />
+              <stop offset=".479" stop-color="#72704B" stop-opacity=".54" />
+              <stop offset="1" stop-color="#F0FCE8" stop-opacity=".388" />
+              <stop offset="1" stop-color="#8E7B64" />
+            </linearGradient>
+            <linearGradient
+              id="gradient-rain"
+              x1="-280"
+              y1="39"
+              x2="1684"
+              y2="39"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#CBFA47" stop-opacity=".43" />
+              <stop offset=".479" stop-color="#DDFB94" stop-opacity=".337" />
+              <stop offset="1" stop-color="#F0FCE8" stop-opacity=".388" />
+              <stop offset="1" stop-color="#fff" stop-opacity=".36" />
+            </linearGradient>
+           
+            <mask id="circle-cutout">
+              <rect x="0" y="0" width="100%" height="100%" />
+              <circle cx="63%" cy="100%" r="34" />
+              <circle cx="85%" cy="100%" r="34" />
+            </mask>
+          </defs>
+          <rect
+            x="0"
+            y="0"
+            width="100%"
+            height="100%"
+            id="background"
+            fill="url(#gradient)"
+          />
+        </svg>
+        </div>
+
+        <div class="breathe-circle-row">
+            <div class="breathe-circle">
+                <!-- <img src="svg/1.svg" id="first-gradient" class="breatheIN-text-animation" alt=""> -->
+                <p id="breatheIN" class="breatheIN-text-animation">breathe in</p>
+                <!-- <img src="svg/2.svg" id="second-gradient" class="hold-text-animation" alt=""> -->
+                <p id="hold" class="hold-text-animation">hold</p>
+                <!-- <img src="svg/3.svg" id="third-gradient" class="breatheOUT-text-animation" alt=""> -->
+                <p id="breatheOUT" class="breatheOUT-text-animation">breathe out</p>
+                <p id="starter-text">breathe in</p>
+                <div class="animate-container">
+                    <div class="pointer-container">
+                        <div class="pointer"></div>
+                    </div>
+                </div>
+
+                <!-- <svg id="circle-border" width="314" height="313" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M313.256 156.331c0 86.325-69.98 156.305-156.304 156.305-86.325 0-156.305-69.98-156.305-156.305S70.627.026 156.952.026c86.324 0 156.304 69.98 156.304 156.305Zm-307.92 0c0 83.735 67.88 151.616 151.616 151.616 83.735 0 151.615-67.881 151.615-151.616 0-83.735-67.88-151.616-151.615-151.616-83.735 0-151.616 67.881-151.616 151.616Z"
+              fill="#92FFC0"
+              fill-opacity=".4"
+            />
+          </svg> -->
+                <svg id="circle-border" width="313" height="322" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M312.609 161.331c0 86.325-69.98 156.305-156.304 156.305C69.98 317.636 0 247.656 0 161.331S69.98 5.026 156.305 5.026c86.324 0 156.304 69.98 156.304 156.305Zm-303.775 0c0 81.446 66.025 147.47 147.471 147.47 81.445 0 147.47-66.024 147.47-147.47s-66.025-147.47-147.47-147.47c-81.446 0-147.47 66.024-147.47 147.47Z"
+              fill="#C9FF92"
+              fill-opacity=".4"
+            />
+            <circle cx="156" cy="9" r="9" fill="#A67D37" />
+            <circle cx="288" cy="236" r="9" fill="#A67D37" />
+            <circle cx="156" cy="313" r="9" fill="#A67D37" />
+          </svg>
+                <svg id="circle" width="230" height="230" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle
+              cx="114.623"
+              cy="114.623"
+              r="114.623"
+              fill="#000"
+              fill-opacity=".2"
+            />
+          </svg>
+            </div>
+        </div>
+        <div class="player">
+            <div class="music-container" id="music-container">
+                <div class="music-info">
+                    <div class="title-and-durration">
+                        <h4 id="title"></h4>
+                        <h4 id="lcurrTime">alo</h4>
+                    </div>
+
+                    <div class="progress-container" id="progress-container">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                </div>
+
+                <audio src="music/rain.mp3" id="audio"></audio>
+
+                <div class="img-container">
+                    <img src="svg/rain.svg" alt="music-cover" id="cover" />
+                </div>
+                <div class="navigation">
+                    <button id="prev" class="action-btn">
+              <i class="fas fa-backward"></i>
+            </button>
+                    <button id="play" class="action-btn action-btn-big">
+              <i class="fas fa-play"></i>
+            </button>
+                    <button id="next" class="action-btn">
+              <i class="fas fa-forward"></i>
+            </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

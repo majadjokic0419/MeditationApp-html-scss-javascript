@@ -1,0 +1,414 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap");
+@mixin glass-effect {
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2), inset 0px 1px 2px rgba(255, 255, 255, 0.8), inset 0px -4px 4px rgba(255, 255, 255, 0.25), inset 0px 4px 12px rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(40px);
+}
+
+@mixin nav-link-font {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 35px;
+    letter-spacing: 0.1em;
+    text-transform: capitalize;
+    color: #ffffff;
+}
+
+@mixin minute-font-sm {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: #b7eebf;
+}
+
+@mixin minute-font-lg {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: #b7eebf;
+}
+
+@mixin title-font {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 50px;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+}
+
+@mixin glass-button {
+    height: 55px;
+    width: 55px;
+    border-radius: 100%;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%) translateZ(0);
+    @include glass-effect();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin glass-button-bs {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 90px;
+    width: 90px;
+    border-radius: 100%;
+    position: relative;
+    @include glass-effect();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+* {
+    &,
+    &:before,
+    &:after {
+        box-sizing: border-box;
+    }
+}
+
+.blurry {
+    //postoji i u velikom
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    z-index: -2;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px -2px 2px rgba(34, 34, 34, 0.5);
+}
+
+.bar {
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    filter: drop-shadow(0 -3px 5px rgba(0, 0, 0, 0.25));
+    &__background {
+        top: 0;
+        position: fixed;
+        display: block;
+        width: 100%;
+        height: 100%;
+        #background {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.time-toggle-button {
+    position: absolute;
+    display: flex;
+}
+
+.ambient-toggle-button {
+    position: absolute;
+    display: flex;
+}
+
+.img-toggle {
+    display: none;
+}
+
+.gray-line {
+    display: none;
+}
+
+@media only screen and (min-width: 400px) {
+    %navbar-links-big-screen {
+        display: none;
+        width: 100%;
+        &.active {
+            //_____________________________________________________________
+            //_____________________________________________________________
+            //_____________________________________________________________
+            //_____________________________________________________________
+            margin-top: 70px;
+            border-radius: 20px;
+            justify-content: center;
+            display: flex;
+            .gray-line {
+                position: absolute;
+                z-index: -2;
+                display: flex;
+                margin-top: -10px;
+            }
+        }
+        &.active li {
+            @include glass-button-bs();
+            padding: 0.2rem;
+            width: 100%;
+        }
+        &.active ul {
+            @for $i from 1 through 3 {
+                .dropdown-item-#{$i} {
+                    transform-origin: top;
+                    animation: slideDown ($i * 200ms) ease-in-out forwards;
+                }
+            }
+            //_____________________________________________________________
+            position: relative;
+            z-index: 1;
+            display: flex;
+            padding: 0;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            flex-direction: column;
+        }
+    }
+    .bar {
+        border-bottom: 2px solid rgb(255, 255, 255);
+    }
+    @keyframes slideDown {
+        0% {
+            opacity: 0;
+            transform: rotateX(-90deg);
+        }
+        50% {
+            transform: rotateX(-20deg);
+        }
+        100% {
+            opacity: 1;
+            transform: rotateX(0deg);
+        }
+    }
+    .time-navbar-links {
+        @extend %navbar-links-big-screen;
+    }
+    .ambient-navbar-links {
+        @extend %navbar-links-big-screen;
+    }
+    %bttn-lg {
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+    }
+    .ten-min-bttn {
+        background-image: url("svg/10 min line.svg");
+        @extend %bttn-lg;
+        @include minute-font-lg();
+        background-size: 65px 65px;
+    }
+    .five-min-bttn {
+        @extend %bttn-lg;
+        background-image: url("svg/5 min line.svg");
+        @include minute-font-lg();
+        background-size: 65px 65px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .two-min-bttn {
+        @extend %bttn-lg;
+        background-image: url("svg/2 min line.svg");
+        background-size: 65px 65px;
+        @include minute-font-lg();
+    }
+    .beach-ambient-bttn {
+        @extend %bttn-lg;
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 60%;
+        }
+    }
+    .bonfire-ambient-bttn {
+        @extend %bttn-lg;
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 45%;
+        }
+    }
+    .rain-ambient-bttn {
+        @extend %bttn-lg;
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 60%;
+        }
+    }
+    %nav-link-buttons-bs {
+        z-index: 2;
+        grid-column: 2 / 3;
+        width: 90px;
+        display: flex;
+        justify-content: center;
+        @include nav-link-font();
+        .text-toggle {
+            margin: 0;
+            line-height: 60px;
+        }
+    }
+    .nav-display {
+        height: 60px;
+        display: grid;
+        grid-template-columns: 60% 20% 20%;
+        justify-items: center;
+    }
+    .title {
+        position: relative;
+        z-index: 3;
+        margin-top: 2px;
+        height: 60px;
+        @include title-font();
+        grid-column: 1 / 2;
+        justify-self: start;
+        padding-left: 10px;
+    }
+    .button-time {
+        @extend %nav-link-buttons-bs;
+        grid-column: 2 / 3;
+    }
+    .button-ambient {
+        @extend %nav-link-buttons-bs;
+        grid-column: 3 / 4;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .img-toggle {
+        display: flex;
+    }
+    .text-toggle {
+        display: none;
+    }
+    .bar {
+        &__background {
+            #background {
+                mask: url(#circle-cutout);
+            }
+        }
+    }
+    #circle-cutout {
+        rect {
+            fill: #fff;
+            width: 100vw;
+            height: 100%;
+        }
+        circle {
+            fill: #000;
+        }
+    }
+    .button-time {
+        @include glass-button;
+        left: 63%;
+        top: 96%;
+    }
+    .button-ambient {
+        @include glass-button;
+        left: 85%;
+        top: 96%;
+    }
+    %navbar-links {
+        display: none;
+        width: 100%;
+        &.active {
+            @include glass-effect();
+            margin-top: 270px;
+            display: flex;
+            border-radius: 20px;
+        }
+        &.active li {
+            list-style-type: none;
+            padding: 0.2rem;
+            width: 100%;
+        }
+        &.active ul {
+            display: flex;
+            padding: 0;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            flex-direction: column;
+        }
+    }
+    .time-navbar-links {
+        @extend %navbar-links;
+    }
+    .ambient-navbar-links {
+        @extend %navbar-links;
+        &.active {
+            margin-top: 196px;
+        }
+    }
+    %bttn {
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .ten-min-bttn {
+        background-image: url("svg/10 min line.svg");
+        background-size: 39px 39.5px;
+        @extend %bttn;
+        @include minute-font-sm();
+    }
+    .five-min-bttn {
+        @extend %bttn;
+        background-image: url("svg/5 min line.svg");
+        background-size: 39px 39.5px;
+        @include minute-font-sm();
+    }
+    .two-min-bttn {
+        @extend %bttn;
+        background-image: url("svg/2 min line.svg");
+        background-size: 39px 39.5px;
+        @include minute-font-sm();
+    }
+    .beach-ambient-bttn {
+        @extend %bttn;
+        img {
+            width: 33px;
+            height: 33px;
+        }
+    }
+    .bonfire-ambient-bttn {
+        @extend %bttn;
+        img {
+            width: 25px;
+            height: 33px;
+        }
+    }
+    #rain-bttn {
+        display: none;
+    }
+    .title {
+        position: relative;
+        z-index: 3;
+        margin-top: 10px;
+        padding-left: 10px;
+        @include title-font();
+        grid-column: 1 / 2;
+        justify-self: start;
+        height: 60px;
+        font-size: 28px;
+        line-height: 35px;
+    }
+}
